@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -10,6 +10,19 @@
     <ItemGroup>
       <ProjectReference Include="..\CRUDoshlepok.Core\CRUDoshlepok.Core.csproj" />
       <ProjectReference Include="..\CRUDoshlepok.Dal\CRUDoshlepok.Dal.csproj" />
+      <ProjectReference Include="..\Implementations\CRUDoshlepok.Core\CRUDoshlepok.Core.csproj" />
+      <ProjectReference Include="..\Implementations\CRUDoshlepok.Dal\CRUDoshlepok.Dal.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="16.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.1">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.0" />
     </ItemGroup>
 
 </Project>
