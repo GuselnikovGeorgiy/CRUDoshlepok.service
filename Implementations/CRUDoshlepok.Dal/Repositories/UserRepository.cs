@@ -1,22 +1,43 @@
+using AutoMapper;
+using CRUDoshlepok.Dal.Context;
+using CRUDoshlepok.Dal.Tables;
+using Dal.Abstractions;
 using Dal.Abstractions.Models;
 using Dal.Abstractions.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRUDoshlepok.Dal.Repositories;
 
-public class UserRepository : IUserRepository
+internal sealed class UserRepository(
+    IModelReader modelReader,
+    IModelUpdater modelUpdater,
+    IMapper mapper) 
+    : IUserRepository
 {
-    public Task<ICollection<UserRepositoryModel>> GetPaginatedUsersAsync(int pageIndex, int pageSize)
+    public async Task<Result<ICollection<UserRepositoryModel>>> GetPaginatedUsersAsync(int pageIndex, int pageSize)
     {
-        throw new NotImplementedException();
+        var result = await modelReader.Users
+            .Skip(pageIndex * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+        
+        return Result<ICollection<UserRepositoryModel>>.Success(mapper.Map<ICollection<UserRepositoryModel>>(result));
     }
 
-    public Task<UserRepositoryModel> GetUserByIdAsync(Guid userId)
+    public async Task<Result<UserRepositoryModel>> GetUserByIdAsync(Guid userId)
     {
-        throw new NotImplementedException();
+        var result = await modelReader.Users
+            .FirstOrDefaultAsync(x => x.Id == userId);
+        
+        return Result<UserRepositoryModel>.Success(mapper.Map<UserRepositoryModel>(result));
     }
 
-    public Task<UserRepositoryModel> AddUserAsync(UserRepositoryModel user)
+    public async Task<Result<UserRepositoryModel>> AddUserAsync(UserRepositoryModel user)
     {
-        throw new NotImplementedException();
+        var result = mapper.Map<User>(user);
+        await modelUpdater.Users.AddAsync(result);
+        await  modelUpdater.SaveChangesAsync();
+        
+        return Result<UserRepositoryModel>.Success(mapper.Map<UserRepositoryModel>(result));
     }
 }
