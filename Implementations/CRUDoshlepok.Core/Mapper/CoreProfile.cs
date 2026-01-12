@@ -8,6 +8,7 @@ public class CoreProfile : Profile
 {
     public CoreProfile()
     {
+        CreateMap<AddUserOperationModel, AddUserRepositoryModel>();
         CreateMap<UserOperationModel, UserRepositoryModel>();
     }
 }

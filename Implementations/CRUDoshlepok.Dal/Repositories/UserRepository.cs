@@ -32,7 +32,7 @@ internal sealed class UserRepository(
         return Result<UserRepositoryModel>.Success(mapper.Map<UserRepositoryModel>(result));
     }
 
-    public async Task<Result<UserRepositoryModel>> AddUserAsync(UserRepositoryModel user)
+    public async Task<Result<UserRepositoryModel>> AddUserAsync(AddUserRepositoryModel user)
     {
         var result = mapper.Map<User>(user);
         await modelUpdater.Users.AddAsync(result);

@@ -8,6 +8,7 @@ internal sealed class GatewayProfile : Profile
 {
     public GatewayProfile()
     {
+        CreateMap<AddUserDto, AddUserOperationModel>();
         CreateMap<UserOperationModel, ResultAddUserDto>();
     }
 }

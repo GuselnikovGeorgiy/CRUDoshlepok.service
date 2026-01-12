@@ -19,7 +19,7 @@ internal class CrudoshlepokDbContext : DbContext, IModelReader, IModelUpdater
     
     public DbSet<User> Users { get; set; }
     
-    IQueryable<User> IModelReader.Users => Users.AsQueryable();
+    IQueryable<User> IModelReader.Users => Users.AsNoTracking();
     
     async Task<int> IModelUpdater.SaveChangesAsync() => await SaveChangesAsync();
 

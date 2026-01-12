@@ -8,5 +8,5 @@ public interface IUserRepository
     
     Task<Result<UserRepositoryModel>> GetUserByIdAsync(Guid userId);
     
-    Task<Result<UserRepositoryModel>> AddUserAsync(UserRepositoryModel user);
+    Task<Result<UserRepositoryModel>> AddUserAsync(AddUserRepositoryModel user);
 }

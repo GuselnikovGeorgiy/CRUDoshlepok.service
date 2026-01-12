@@ -15,7 +15,7 @@ public class UserOperations(
 {
     public async Task<Result<UserOperationModel>> AddUserAsync(AddUserOperationModel user)
     {
-        var result = await userRepository.AddUserAsync(mapper.Map<UserRepositoryModel>(user));
+        var result = await userRepository.AddUserAsync(mapper.Map<AddUserRepositoryModel>(user));
 
         return result.IsSuccess
             ? Result<UserOperationModel>.Success(

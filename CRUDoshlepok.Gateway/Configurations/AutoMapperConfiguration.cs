@@ -1,4 +1,6 @@
 using AutoMapper;
+using CRUDoshlepok.Core;
+using CRUDoshlepok.Dal;
 using CRUDoshlepok.Gateway.Mapper;
 
 namespace CRUDoshlepok.Gateway.Configurations;
@@ -10,7 +12,8 @@ internal static class AutoMapperConfiguration
         services.AddAutoMapper(cfg =>
         {
             cfg.ConfigureGatewayProfiles();
-            // cfg.ConfigureDalProfiles();
+            cfg.ConfigureDalProfiles();
+            cfg.ConfigureCoreProfiles();
         });
     }
     
